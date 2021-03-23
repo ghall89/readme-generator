@@ -30,7 +30,40 @@ const questions = [
 				return false;
 			}
 		}
+	},
+	{
+		type: 'input',
+		name: 'installation',
+		message: "Provide installation instructions. (required)",
+		validate: installInput => {
+			if (installInput) {
+				return true;
+			} else {
+				console.log('Please enter installation instructions!');
+				return false;
+			}
+		}
+	},
+	{
+		type: 'input',
+		name: 'usage',
+		message: "Provide usage instructions. (required)",
+		validate: usageInput => {
+			if (usageInput) {
+				return true;
+			} else {
+				console.log('Please enter usage instructions!');
+				return false;
+			}
+		}
+	},
+	{
+		type: 'list',
+		name: 'license',
+		message: 'Choose a license.',
+		choices: ['GNU General Public License', 'MIT License', 'Apache License', 'No License']
 	}
+	
 ];
 
 // TODO: Create a function to write README file
@@ -47,7 +80,6 @@ const writeToFile = data => {
 const init = () => {
 	inquirer.prompt(questions)
 		.then(answers => {
-			console.log(answers);
 			let readMeContent = generateMarkdown(answers);
 			writeToFile(readMeContent);
 		})
