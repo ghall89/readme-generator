@@ -68,11 +68,32 @@ const questions = [
 
 // TODO: Create a function to write README file
 const writeToFile = data => {
-	fs.writeFile('readme.md', data, (err) => {
+	fs.writeFile('README.md', data, (err) => {
 		if (err) {
 			return err;
 		}
 		console.log('Readme successfully created!');
+	});
+};
+
+const copyLicense = data => {	
+	let filePath = ''
+	
+	switch (data.license) {
+		case 'GNU General Public License':
+			filePath = './assets/licenses/gnu.md';
+			break;
+		case 'MIT License':
+			filePath = './assets/licenses/mit.md';
+			break;
+		case 'Apache License':
+			filePath = './assets/licenses/apache.md';
+			break;
+		default:
+			return;
+	}
+	fs.copyFile(filePath, './LICENSE.md', (err) => {
+		if (err) throw err;
 	});
 };
 
@@ -82,6 +103,7 @@ const init = () => {
 		.then(answers => {
 			let readMeContent = generateMarkdown(answers);
 			writeToFile(readMeContent);
+			copyLicense(answers);
 		})
 		.catch(error => {
 			if(error.isTtyError) {
