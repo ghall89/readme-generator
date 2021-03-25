@@ -1,10 +1,49 @@
 // TODO: Include packages needed for this application
 const fs = require('fs');
-const inquirer = require('inquirer')
+const inquirer = require('inquirer');
 const generateMarkdown = require('./utils/generateMarkdown.js');
 
 // TODO: Create an array of questions for user input
 const questions = [
+	{
+		type: 'input',
+		name: 'name',
+		message: "What's your first and last name? (required)",
+		validate: nameInput => {
+			if (nameInput) {
+				return true;
+			} else {
+				console.log('Please enter your name!');
+				return false;
+			}
+		}
+	},
+	{
+		type: 'input',
+		name: 'github',
+		message: "What's your GitHub username? (required)",
+		validate: githubInput => {
+			if (githubInput) {
+				return true;
+			} else {
+				console.log('Please enter your GitHub username!');
+				return false;
+			}
+		}
+	},
+	{
+		type: 'input',
+		name: 'email',
+		message: "What's your email address? (required)",
+		validate: emailInput => {
+			if (emailInput) {
+				return true;
+			} else {
+				console.log('Please enter your email address!');
+				return false;
+			}
+		}
+	},
 	{
 		type: 'input',
 		name: 'title',
@@ -68,7 +107,7 @@ const questions = [
 
 // TODO: Create a function to write README file
 const writeToFile = data => {
-	fs.writeFile('README.md', data, (err) => {
+	fs.writeFile('./output/README.md', data, (err) => {
 		if (err) {
 			return err;
 		}
@@ -92,7 +131,7 @@ const copyLicense = data => {
 		default:
 			return;
 	}
-	fs.copyFile(filePath, './LICENSE.md', (err) => {
+	fs.copyFile(filePath, './output/LICENSE.md', (err) => {
 		if (err) throw err;
 	});
 };
