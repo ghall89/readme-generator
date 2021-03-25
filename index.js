@@ -33,6 +33,19 @@ const questions = [
 	},
 	{
 		type: 'input',
+		name: 'email',
+		message: "What's your email address? (required)",
+		validate: emailInput => {
+			if (emailInput) {
+				return true;
+			} else {
+				console.log('Please enter your email address!');
+				return false;
+			}
+		}
+	},
+	{
+		type: 'input',
 		name: 'title',
 		message: "What's the project name? (required)",
 		validate: titleInput => {

@@ -116,6 +116,7 @@ ${data.description}
 - [Installation](#installation)
 - [Usage](#usage)
 ${renderLicenseLink(data)}
+- [Questions](#usage)
 
 ## Installation
 
@@ -125,6 +126,10 @@ ${data.installation}
 
 ${data.usage}
 ${renderLicenseSection(data)}
+## Questions
+
+Direct any questions to [${data.name}](http://github.com/${data.github}) via email at ${data.email}
+
 `;
 }
 
