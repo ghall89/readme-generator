@@ -107,7 +107,7 @@ const questions = [
 
 // TODO: Create a function to write README file
 const writeToFile = data => {
-	fs.writeFile('README.md', data, (err) => {
+	fs.writeFile('./output/README.md', data, (err) => {
 		if (err) {
 			return err;
 		}
@@ -131,7 +131,7 @@ const copyLicense = data => {
 		default:
 			return;
 	}
-	fs.copyFile(filePath, './LICENSE.md', (err) => {
+	fs.copyFile(filePath, './output/LICENSE.md', (err) => {
 		if (err) throw err;
 	});
 };
