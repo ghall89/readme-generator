@@ -1,7 +1,7 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-const renderLicenseBadge = data => {
-  if (data.license == 'No License') {
+const renderLicenseBadge = license => {
+  if (license == 'No License') {
     return '';
   }
   return '![](https://img.shields.io/github/license/ghall89/readme-generator?style=for-the-badge)';
@@ -9,8 +9,8 @@ const renderLicenseBadge = data => {
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-const renderLicenseLink = data => {
-  if (data.license == 'No License') {
+const renderLicenseLink = license => {
+  if (license == 'No License') {
     return '';
   }
   return `- [License](#license)`;
@@ -18,20 +18,20 @@ const renderLicenseLink = data => {
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-const renderLicenseSection = (data) => {
-    
-  if (data.license == 'No License') {
+const renderLicenseSection = (license, name, title) => {
+      
+  if (license == 'No License') {
     return '';
   }
   let licenseText = '';
   const currentYear = new Date().getFullYear();
   
-  switch (data.license) {
+  switch (license) {
     
     case 'GNU General Public License':
       licenseText = `
-${data.title}
-Copyright (C) ${currentYear}  ${data.name}
+${title}
+Copyright (C) ${currentYear}  ${name}
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -51,7 +51,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       licenseText = `
 MIT License
 
-Copyright (c) ${currentYear} ${data.name}
+Copyright (c) ${currentYear} ${name}
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -74,7 +74,7 @@ SOFTWARE.
       break;
     case 'Apache License':
       licenseText = `
-Copyright ${currentYear} ${data.name}
+Copyright ${currentYear} ${name}
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -101,13 +101,16 @@ ${licenseText}
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   
+  const { name, github, email, title, description, installation, usage, license } = data;
+
+  
   return `
-${renderLicenseBadge(data)}
-# ${data.title}
+${renderLicenseBadge(license)}
+# ${title}
 
 ## Description
 
-${data.description}
+${description}
 
 ![](./assets/screenshot.png)
 
@@ -124,11 +127,11 @@ ${data.installation}
 
 ## Usage
 
-${data.usage}
-${renderLicenseSection(data)}
+${usage}
+${renderLicenseSection(license, name, title)}
 ## Questions
 
-Direct any questions to [${data.name}](http://github.com/${data.github}) via email at ${data.email}
+Direct any questions to [${name}](http://github.com/${github}) via email at ${email}
 
 `;
 }
