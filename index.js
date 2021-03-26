@@ -73,7 +73,7 @@ const questions = [
 	{
 		type: 'input',
 		name: 'installation',
-		message: "Provide installation instructions. (required)",
+		message: "Provide installation steps seperated by a commas. (required)",
 		validate: installInput => {
 			if (installInput) {
 				return true;
@@ -86,7 +86,7 @@ const questions = [
 	{
 		type: 'input',
 		name: 'usage',
-		message: "Provide usage instructions. (required)",
+		message: "Provide usage steps seperated by a commas. (required)",
 		validate: usageInput => {
 			if (usageInput) {
 				return true;
