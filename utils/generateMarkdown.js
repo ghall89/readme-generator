@@ -16,6 +16,14 @@ const renderLicenseLink = license => {
   return `- [License](#license)`;
 };
 
+//Make a string into a list
+const makeList = input => {
+  const listArr = input.split(', ');
+  const output = [];
+  listArr.forEach(listArr => {output.push(`- ${listArr}`)});
+  return output.join('\n');
+};
+
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 const renderLicenseSection = (license, name, title) => {
@@ -123,11 +131,11 @@ ${renderLicenseLink(data)}
 
 ## Installation
 
-${data.installation}
+${makeList(installation)}
 
 ## Usage
 
-${usage}
+${makeList(usage)}
 ${renderLicenseSection(license, name, title)}
 ## Questions
 
